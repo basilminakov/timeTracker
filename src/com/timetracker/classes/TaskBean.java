@@ -7,6 +7,7 @@ public class TaskBean {
 	private DateTime taskDate;
 	private String taskDescripton;
 	private Duration taskDuration;
+	private final String DEFAULT_NAME = "Unnamed";
 	
 	public TaskBean(DateTime date, String description, Duration duration) {
 		setTaskDate(date);
@@ -33,6 +34,9 @@ public class TaskBean {
 	}
 
 	public void setTaskDescription(String taskDescripton) {
+		if (taskDescripton == null || "".equals(taskDescripton)) {
+			taskDescripton = DEFAULT_NAME;
+		}
 		this.taskDescripton = taskDescripton;
 	}
 

@@ -1,7 +1,7 @@
 package com.timetracker.interfaces;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 public interface IDataRenderer {
-	JSONObject render(Object data);
+	JSONArray render(Object data);
 }

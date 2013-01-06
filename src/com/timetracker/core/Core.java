@@ -9,7 +9,7 @@ import com.timetracker.classes.TaskBean;
 public final class Core {
 
 	private final HashMap<String, Group> groups = new HashMap<String, Group>();
-	private final String DEFAULT_GROUP = "Untitled";
+	private final String DEFAULT_GROUP = "General";
 	
 	public Core() {	
 		addGroup(new Group(DEFAULT_GROUP, true));

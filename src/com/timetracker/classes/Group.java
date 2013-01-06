@@ -2,6 +2,7 @@ package com.timetracker.classes;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,8 +58,10 @@ public class Group {
 	}
 	
 	public JSONObject renderTasks() {
-		JSONObject json = renderer.render(tasks);
+		JSONArray tasksData = renderer.render(tasks);
+		JSONObject json = new JSONObject();
 		try {
+			json.put("tasks", tasksData);
 			json.put("group", getName());
 		} catch (JSONException e) {
 			e.printStackTrace();
