@@ -2,10 +2,11 @@ package com.timetracker.interfaces;
 
 import java.util.ArrayList;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import com.timetracker.classes.TaskBean;
 
@@ -21,17 +22,14 @@ public class TaskRenderer implements IDataRenderer {
 		} else {
 			return json;
 		}
-		try {
-			DateTime time = null;
-			for (TaskBean t : tasks) {
-				time = new DateTime(t.getDuration());
-				json.put(new JSONObject()
-					.put("name", t.getTaskDescription())
-					.put("time", time.toString(DateTimeFormat.shortTime().withZoneUTC()))
-				);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
+		
+		DateTime time = null;
+		for (TaskBean t : tasks) {
+			time = new DateTime(t.getDuration());
+			json.put(new JSONObject()
+				.put("name", t.getTaskDescription())
+				.put("time", time.toString(DateTimeFormat.shortTime().withZoneUTC()))
+			);
 		}
 		return json;
 	}
