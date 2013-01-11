@@ -2,11 +2,10 @@ package com.timetracker.interfaces;
 
 import java.util.ArrayList;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.timetracker.classes.TaskBean;
 
@@ -14,7 +13,6 @@ public class TaskRenderer implements IDataRenderer {
 
 	private ArrayList<TaskBean> tasks;
 	
-	@SuppressWarnings("unchecked")
 	public JSONArray render(Object data) {
 		JSONArray json = new JSONArray();
 		if (data != null) {
@@ -26,10 +24,10 @@ public class TaskRenderer implements IDataRenderer {
 		DateTime time = null;
 		for (TaskBean t : tasks) {
 			time = new DateTime(t.getDuration());
-			json.put(new JSONObject()
-				.put("name", t.getTaskDescription())
-				.put("time", time.toString(DateTimeFormat.shortTime().withZoneUTC()))
-			);
+			JSONObject task = new JSONObject();
+			json.add(task);
+			task.put("name", t.getTaskDescription());
+			task.put("time", time.toString(DateTimeFormat.shortTime().withZoneUTC()));
 		}
 		return json;
 	}

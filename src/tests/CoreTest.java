@@ -66,6 +66,7 @@ public class CoreTest {
 		HashMap<String, Group> groups = core.getGroups();
 		for (Group group : groups.values()) {
 			time += group.getDuration();
+			group.renderTasks();
 		}
 		Duration dur = Duration.millis(time);
 		assertEquals(1, dur.getStandardHours());
